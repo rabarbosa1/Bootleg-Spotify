@@ -15,6 +15,7 @@
 
 		<link rel="stylesheet" href="./assets/css/jass.css" />
         <link rel="stylesheet" href="./assets/css/style.css" />
+
 		<title>Bootleg Spotify</title>
 	</head>
 
@@ -33,10 +34,10 @@
 					<h3 class="card-header text-uppercase">Search By Artist</h3>
 					<form id="user-form" class="card-body">
 
-						<label class="form-label" for="username">Artist Name</label>
+						<label class="form-label" for="artist-name">Artist Name</label>
 						<input
-							name="username"
-							id="username"
+							name="artist-name"
+							id="artist-name"
 							type="text"
 							autofocus="true"
 							class="form-input"
@@ -50,10 +51,10 @@
 				<div class="card">
 
 					<h3 class="card-header text-uppercase">Search History</h3>
-					<div id="language-buttons" class="card-body">
-						<button data-language="javascript" class="btn">Taylor Swift</button>
-						<button data-language="html" class="btn">Queen</button>
-						<button data-language="css" class="btn">Melanie Martinez</button>
+					<div id="search-history" class="card-body">
+						<button data-language="button-1" class="btn">Taylor Swift</button>
+						<button data-language="button-2" class="btn">Queen</button>
+						<button data-language="button-3" class="btn">Melanie Martinez</button>
 
 					</div>
 				</div>
@@ -61,10 +62,10 @@
 
 			<div class="col-12 col-md-8">
 				<h2 class="subtitle">
-					Showing songs for: <span id="repo-search-term"></span>
+					Showing songs for: <span id="artist-search-term"></span>
 				</h2>
 
-				<div id="repos-container" class="list-group">
+				<div id="song-container" class="list-group">
                     <button data-language="javascript" class="btn">Dollhouse</button>
 						<button data-language="html" class="btn">Pity Party</button>
 						<button data-language="css" class="btn">Cake</button>
@@ -79,4 +80,3 @@
 
 	</body>
 </html>
-
