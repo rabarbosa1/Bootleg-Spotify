@@ -96,6 +96,8 @@ p {
 	padding: 3% 4%;
 	background-color: var(--dark);
 	color: var(--primary);
+	justify-content: center;
+	width: auto;
 }
 
 .hero p {
