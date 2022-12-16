@@ -1,9 +1,9 @@
 :root {
-	--primary: #ccdad1;
-	--secondary: #9caea9;
-	--tertiary: #788585;
-	--light-dark: #6f6866;
-	--dark: #38302e;
+	--primary: #b7c9be;
+	--secondary: #afd4c9;
+	--tertiary: #737f7f;
+	--light-dark: #606060;
+	--dark: #000000;
 	--border-radius: 0.3rem;
 }
 
@@ -23,7 +23,6 @@ body {
 
 h1,
 h2,
-h3,
 h4,
 h5,
 h6 {
@@ -32,6 +31,13 @@ h6 {
 	color: var(--dark);
 	line-height: 1.25;
 }
+h3 {
+    font-weight:700;
+    margin: 0;
+    color: var(--dark);
+    line-height: 1.25;
+    font-size: 1.50rem;
+}
 
 main {
 	margin: 20px auto;
@@ -39,7 +45,9 @@ main {
 }
 
 p {
-	font-size: 1.2rem;
+    margin-top: 25px;
+	font-size: 1.9rem;
+    font-weight: 700;
 }
 
 .btn {
