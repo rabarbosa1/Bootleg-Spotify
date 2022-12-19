@@ -1,6 +1,35 @@
+var artist
+var artistSearchStr
+var artistInputSubmit = $("#artist-input-btn")
+var artistInput = $("#artist-name")
+
+// replace spaces in artist name with '%20'
+var artistForSearch = function() {  
+    artist.split(" ")
+    console.log(artist)
+}
+
+function getMusicalArtist(event) {
+    event.preventDefault()
+    // get the value of the search input for artist
+    artist = artistInput.val()
+    // replace spaces in artist name with '%20'
+    console.log(artist.replace(/ /g, "%20"))
+    artistSearchStr = artist.replace(/ /g, "%20")
+ 
+    // var artistForSearch = function() {  
+    //     var artistSplit = artist.split(" ")
+    //     console.log(artistSplit)
+
+    //     for(var i = 0; i < artistSplit.length; i++) {
+
+    //     }
+
+    // }
 
 
-function getMusicalArtist() {
+
+
     const options = {
         method: 'GET',
         headers: {
@@ -9,7 +38,7 @@ function getMusicalArtist() {
         }
     };
     
-    fetch('https://genius-song-lyrics1.p.rapidapi.com/search?q=the%20beatles&per_page=10&page=1', options)
+    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=10&page=1`, options)
         .then(function (response) {
             console.log(response)
             return response.json()
@@ -69,6 +98,10 @@ function getArtistPlaylist() {
 
 }
 // getArtistPlaylist()
+
+artistInputSubmit.on("click", getMusicalArtist)
+
+
 
 // embed spotify player in app
 // get the iframe from the html
