@@ -44,7 +44,7 @@ function getMusicalArtistId(event) {
 }
 
 function getArtistSongs() {
-    
+
 }
 
 
@@ -95,7 +95,7 @@ function getArtistPlaylist() {
 }
 // getArtistPlaylist()
 
-artistInputSubmit.on("click", getMusicalArtist)
+artistInputSubmit.on("click", getMusicalArtistId)
 
 
 
