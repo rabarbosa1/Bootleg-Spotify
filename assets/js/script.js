@@ -71,17 +71,9 @@ function getArtistPlaylist() {
 // getArtistPlaylist()
 
 // embed spotify player in app
-window.onSpotifyIframeApiReady = (IFrameAPI) => {
-    let element = $('#embed-iframe');
-    let options = {
-        uri: 'spotify:episode:7makk4oTQel546B0PZlDM5'
-      };
-    let callback = (EmbedController) => {
-        console.log(EmbedController, 'testing callback')
-    };
-    IFrameAPI.createController(element, options, callback);
-  };
-
+// get the iframe from the html
+// update the src url with the playlist id:
+    // example: https://open.spotify.com/embed/playlist/5a2OuIJ1kEttA8X3PaewlI?utm_source=oembed
 
 
 
