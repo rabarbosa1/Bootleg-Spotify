@@ -1,5 +1,6 @@
 var artist
 var artistSearchStr
+var artistId
 var artistInputSubmit = $("#artist-input-btn")
 var artistInput = $("#artist-name")
 
@@ -9,7 +10,7 @@ var artistForSearch = function() {
     console.log(artist)
 }
 
-function getMusicalArtist(event) {
+function getMusicalArtistId(event) {
     event.preventDefault()
     // get the value of the search input for artist
     artist = artistInput.val()
@@ -17,19 +18,6 @@ function getMusicalArtist(event) {
     console.log(artist.replace(/ /g, "%20"))
     artistSearchStr = artist.replace(/ /g, "%20")
  
-    // var artistForSearch = function() {  
-    //     var artistSplit = artist.split(" ")
-    //     console.log(artistSplit)
-
-    //     for(var i = 0; i < artistSplit.length; i++) {
-
-    //     }
-
-    // }
-
-
-
-
     const options = {
         method: 'GET',
         headers: {
@@ -38,17 +26,25 @@ function getMusicalArtist(event) {
         }
     };
     
-    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=10&page=1`, options)
+    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=1&page=1`, options)
         .then(function (response) {
             console.log(response)
             return response.json()
         })
         .then(function(data) {
             console.log(data)
+
+            // query the data response to get the artist id
+            artistId = data.response.hits[0].result.primary_artist.id
+            console.log(artistId)
         })
         .catch(function(err) {
             console.error(err)
         });
+}
+
+function getArtistSongs() {
+    
 }
 
 
