@@ -1,7 +1,9 @@
 var artist
 var artistSearchStr
 var artistId
+var artistURI
 var artistPlaylistURI 
+var playlistId
 var playlistIframe = $("#playlist-iframe")
 var artistInputSubmit = $("#artist-input-btn")
 var artistPlaylistSubmit = $('#artist-playlist-input-btn')
@@ -104,7 +106,7 @@ function getArtistForPlaylist(event) {
         })
         .then(function (data) {
             console.log(data)
-            artistPlaylistURI = data.artists.items[0].data.uri
+            artistURI = data.artists.items[0].data.uri
             getArtistPlaylist();
         })
         .catch(function (err) {
@@ -113,8 +115,8 @@ function getArtistForPlaylist(event) {
 }
 
 function getArtistPlaylist() {
-    var artistPlaylistSearchURI = artistPlaylistURI.replace(/:/g, "%3A")
-    var apiURL = `https://spotify23.p.rapidapi.com/seed_to_playlist/?uri=${artistPlaylistSearchURI}`
+    var artistSearchURI = artistURI.replace(/:/g, "%3A")
+    var apiURL = `https://spotify23.p.rapidapi.com/seed_to_playlist/?uri=${artistSearchURI}`
     const options = {
         method: 'GET',
         headers: {
@@ -130,10 +132,13 @@ function getArtistPlaylist() {
         })
         .then(function (data) {
             console.log(data)
+            console.log(data.mediaItems[0].uri)
+            artistPlaylistURI = data.mediaItems[0].uri
         // split artistPlaylistSearchInput variable on :
         // store the playlist id in a new variable - var playlistId
         // update the src in the iFrame to https://open.spotify.com/embed/playlist/${playlistId}?utm_source=oembed
         getPlaylistId()
+        playlistIframe.attr("src",`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=oembed`)
         })
         .catch(function (err) {
             console.error(err)
@@ -141,9 +146,11 @@ function getArtistPlaylist() {
 
 }
 
-var getPlaylistId = function() {
+function getPlaylistId() {
     var artistPlaylistURISplit = artistPlaylistURI.split(":")
     console.log(artistPlaylistURISplit)
+    playlistId = artistPlaylistURISplit.pop()
+    console.log(playlistId)
 }
 
 artistInputSubmit.on("click", getMusicalArtistId)
