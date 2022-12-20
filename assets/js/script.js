@@ -71,7 +71,8 @@ function getArtistAlbums() {
         })
         .then(function (data) {
             console.log(data)
-            
+            // for loop to iterate the albums array
+            // print button to UI with album name
         })
         .catch(function (err) {
             console.error(err)
@@ -129,7 +130,9 @@ function getArtistPlaylist() {
         })
         .then(function (data) {
             console.log(data)
-        
+        // split artistPlaylistSearchInput variable on :
+        // store the playlist id in a new variable - var playlistId
+        // update the src in the iFrame to https://open.spotify.com/embed/playlist/${playlistId}?utm_source=oembed
         })
         .catch(function (err) {
             console.error(err)
