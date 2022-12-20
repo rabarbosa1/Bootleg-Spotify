@@ -1,14 +1,26 @@
 :root {
-	--primary: #b7c9be;
+	--primary: #1DB954;
 	--secondary: #afd4c9;
 	--tertiary: #737f7f;
-	--light-dark: #606060;
+	--light-dark: black;
 	--dark: #000000;
 	--border-radius: 0.3rem;
 }
 
 * {
 	box-sizing: border-box;
+}
+#playlist {
+
+margin: 15px 0 25px 0;
+font-size: 50px;
+padding-bottom: 10px;
+
+}
+
+.hide {
+display: none;
+
 }
 
 body {
@@ -20,6 +32,7 @@ body {
 	line-height: 1.5;
 	font-size: 16px;
 }
+
 
 h1,
 h2,
@@ -51,12 +64,13 @@ p {
 }
 
 .btn {
-	font-size: 1.3rem;
+	font-size: 25px;
+	font-weight: 800;
 	text-decoration: none;
 	padding: 6px 5px;
 	width: 100%;
 	display: block;
-	margin: 5px 0;
+	margin: 15px 0;
 	border-radius: var(--border-radius);
 	color: var(--primary);
 	border: none;
@@ -167,6 +181,7 @@ p {
 	background-color: var(--dark);
 	padding: 2.5%;
 	border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
+	color: #1DB954
 }
 
 .card-body {
