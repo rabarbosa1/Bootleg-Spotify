@@ -5,8 +5,10 @@ var artistPlaylistURI
 var artistInputSubmit = $("#artist-input-btn")
 var artistPlaylistSubmit = $('#artist-playlist-input-btn')
 var artistInput = $("#artist-name")
+var songName = $("#songName")
 var artistSearchTerm = $('#artist-search-term')
 var playlistSubtitle = $('#playlist');
+
 
 // replace spaces in artist name with '%20'
 var artistForSearch = function () {
@@ -97,8 +99,10 @@ function getArtistForPlaylist(event) {
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
         }
     };
+
     
     fetch(`https://spotify23.p.rapidapi.com/search/?q=${artistSearchStr}&type=artists&offset=0&limit=1&numberOfTopResults=5`, options)
+
         .then(function (response) {
             console.log(response)
             return response.json()
