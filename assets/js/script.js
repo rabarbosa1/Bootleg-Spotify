@@ -41,7 +41,7 @@ function getMusicalArtistId(event) {
             console.log(data)
 
             //add artist name to search term
-            artistSearchTerm.text('Showing Song results for :   ' + data.response.hits[0].result.artist_names);
+            artistSearchTerm.text('Showing Album Results For: ' + data.response.hits[0].result.artist_names);
             playlistSubtitle.text(data.response.hits[0].result.artist_names + "'s" + "  Playlist :" );
             $('#song-info').removeClass('hide');
             $('#spotify-player').removeClass('hide');
@@ -49,7 +49,7 @@ function getMusicalArtistId(event) {
             // query the data response to get the artist id
             artistId = data.response.hits[0].result.primary_artist.id
             console.log(artistId)
-            getArtistSongs()
+            getArtistAlbums()
             
         })
         .catch(function (err) {
@@ -59,7 +59,7 @@ function getMusicalArtistId(event) {
 
 }
 
-function getArtistSongs() {
+function getArtistAlbums() {
  
     const options = {
         method: 'GET',
@@ -144,6 +144,7 @@ function getArtistPlaylist() {
 }
 // getArtistPlaylist()
 
+
 artistInputSubmit.on("click", getMusicalArtistId)
 
 artistPlaylistSubmit.on("click", getArtistForPlaylist)
@@ -152,6 +153,8 @@ artistPlaylistSubmit.on("click", getArtistForPlaylist)
 // get the iframe from the html
 // update the src url with the playlist id:
     // example: https://open.spotify.com/embed/playlist/5a2OuIJ1kEttA8X3PaewlI?utm_source=oembed
+// create a function that splits the spotify playlist uri to pop out the playlist id to then dynamically add to iframe src url
+
 
 
 
@@ -170,4 +173,9 @@ artistPlaylistSubmit.on("click", getArtistForPlaylist)
     // save in a variable to add to api endpoint as query param
 //
 
+
+// create one button that calls both the albums function and the playlist function
+// another function that calls both the get albums function and playlist function to show the albums and playlist at the same time
+// set localStorage with the key as 'artist' and the value as the event.target.value - value of the artist search input value
+// get the value of artist from localStorage and pass that into the functions to get the albums and the playlist
 
