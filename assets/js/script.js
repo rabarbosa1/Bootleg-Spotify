@@ -50,7 +50,8 @@ function getMusicalArtistId(event) {
             artistId = data.response.hits[0].result.primary_artist.id
             console.log(artistId)
             getArtistAlbums()
-            
+            getArtistForPlaylist(event)
+            getArtistPlaylist()
         })
         .catch(function (err) {
             console.error(err)
@@ -147,7 +148,7 @@ function getArtistPlaylist() {
 
 artistInputSubmit.on("click", getMusicalArtistId)
 
-artistPlaylistSubmit.on("click", getArtistForPlaylist)
+// artistPlaylistSubmit.on("click", getArtistForPlaylist)
 
 // embed spotify player in app
 // get the iframe from the html
