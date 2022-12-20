@@ -1,7 +1,10 @@
 var artist
 var artistSearchStr
 var artistId
+var artistURI
 var artistPlaylistURI 
+var playlistId
+var playlistIframe = $("#playlist-iframe")
 var artistInputSubmit = $("#artist-input-btn")
 var artistPlaylistSubmit = $('#artist-playlist-input-btn')
 var artistInput = $("#artist-name")
@@ -9,12 +12,6 @@ var songName = $("#songName")
 var artistSearchTerm = $('#artist-search-term')
 var playlistSubtitle = $('#playlist');
 
-
-// replace spaces in artist name with '%20'
-var artistForSearch = function () {
-    artist.split(" ")
-    console.log(artist)
-}
 
 function getMusicalArtistId(event) {
     event.preventDefault()
@@ -32,7 +29,7 @@ function getMusicalArtistId(event) {
         }
     };
 
-    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=1&page=1`, options)
+    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=10&page=1`, options)
         .then(function (response) {
             console.log(response)
             return response.json()
@@ -41,16 +38,18 @@ function getMusicalArtistId(event) {
             console.log(data)
 
             //add artist name to search term
-            artistSearchTerm.text('Showing Song results for :   ' + data.response.hits[0].result.artist_names);
-            playlistSubtitle.text(data.response.hits[0].result.artist_names + "'s" + "Playlist" );
-            $('#song-info').removeClass('hide');
+
+            artistSearchTerm.text('Showing Album Results For: ' + data.response.hits[0].result.artist_names);
+            playlistSubtitle.text(data.response.hits[0].result.artist_names + "'s" + "  Playlist :" );
+            $('#album-info').removeClass('hide');
+
             $('#spotify-player').removeClass('hide');
 
             // query the data response to get the artist id
             artistId = data.response.hits[0].result.primary_artist.id
             console.log(artistId)
-            getArtistSongs()
-            
+            getArtistAlbums()
+            getArtistForPlaylist(event)
         })
         .catch(function (err) {
             console.error(err)
@@ -59,7 +58,7 @@ function getMusicalArtistId(event) {
 
 }
 
-function getArtistSongs() {
+function getArtistAlbums() {
  
     const options = {
         method: 'GET',
@@ -69,7 +68,6 @@ function getArtistSongs() {
         }
     };
 
-    //fetch(`https://genius-song-lyrics1.p.rapidapi.com/artists/${artistId}/songs?sort=title&per_page=20&page=1`, options)
     fetch(`https://genius-song-lyrics1.p.rapidapi.com/artists/${artistId}/albums?per_page=20&page=1`, options)
         .then(function (response) {
             console.log(response)
@@ -77,7 +75,8 @@ function getArtistSongs() {
         })
         .then(function (data) {
             console.log(data)
-            
+            // for loop to iterate the albums array
+            // print button to UI with album name
         })
         .catch(function (err) {
             console.error(err)
@@ -109,7 +108,7 @@ function getArtistForPlaylist(event) {
         })
         .then(function (data) {
             console.log(data)
-            artistPlaylistURI = data.artists.items[0].data.uri
+            artistURI = data.artists.items[0].data.uri
             getArtistPlaylist();
         })
         .catch(function (err) {
@@ -118,8 +117,8 @@ function getArtistForPlaylist(event) {
 }
 
 function getArtistPlaylist() {
-    var artistPlaylistSearchURI = artistPlaylistURI.replace(/:/g, "%3A")
-    var apiURL = `https://spotify23.p.rapidapi.com/seed_to_playlist/?uri=${artistPlaylistSearchURI}`
+    var artistSearchURI = artistURI.replace(/:/g, "%3A")
+    var apiURL = `https://spotify23.p.rapidapi.com/seed_to_playlist/?uri=${artistSearchURI}`
     const options = {
         method: 'GET',
         headers: {
@@ -135,23 +134,37 @@ function getArtistPlaylist() {
         })
         .then(function (data) {
             console.log(data)
-        
+            console.log(data.mediaItems[0].uri)
+            artistPlaylistURI = data.mediaItems[0].uri
+        // split artistPlaylistSearchInput variable on :
+        // store the playlist id in a new variable - var playlistId
+        // update the src in the iFrame to https://open.spotify.com/embed/playlist/${playlistId}?utm_source=oembed
+        getPlaylistId()
+        playlistIframe.attr("src",`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=oembed`)
         })
         .catch(function (err) {
             console.error(err)
         });
 
 }
-// getArtistPlaylist()
+
+function getPlaylistId() {
+    var artistPlaylistURISplit = artistPlaylistURI.split(":")
+    console.log(artistPlaylistURISplit)
+    playlistId = artistPlaylistURISplit.pop()
+    console.log(playlistId)
+}
 
 artistInputSubmit.on("click", getMusicalArtistId)
 
-artistPlaylistSubmit.on("click", getArtistForPlaylist)
+// artistPlaylistSubmit.on("click", getArtistForPlaylist)
 
 // embed spotify player in app
 // get the iframe from the html
 // update the src url with the playlist id:
     // example: https://open.spotify.com/embed/playlist/5a2OuIJ1kEttA8X3PaewlI?utm_source=oembed
+// create a function that splits the spotify playlist uri to pop out the playlist id to then dynamically add to iframe src url
+
 
 
 
@@ -170,4 +183,9 @@ artistPlaylistSubmit.on("click", getArtistForPlaylist)
     // save in a variable to add to api endpoint as query param
 //
 
+
+// create one button that calls both the albums function and the playlist function
+// another function that calls both the get albums function and playlist function to show the albums and playlist at the same time
+// set localStorage with the key as 'artist' and the value as the event.target.value - value of the artist search input value
+// get the value of artist from localStorage and pass that into the functions to get the albums and the playlist
 
