@@ -29,7 +29,7 @@ function getMusicalArtistId(event) {
         }
     };
 
-    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=1&page=1`, options)
+    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=10&page=1`, options)
         .then(function (response) {
             console.log(response)
             return response.json()
