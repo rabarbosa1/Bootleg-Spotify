@@ -3,6 +3,7 @@ var artistSearchStr
 var artistId
 var artistInputSubmit = $("#artist-input-btn")
 var artistInput = $("#artist-name")
+var artistSearchTerm = $('#artist-search-term')
 
 // replace spaces in artist name with '%20'
 var artistForSearch = function() {  
@@ -34,6 +35,10 @@ function getMusicalArtistId(event) {
         .then(function(data) {
             console.log(data)
 
+            //add artist name to search term
+            artistSearchTerm.text('Showing Song results for :   ' + data.response.hits[0].result.artist_names);
+            $('#song-info').removeClass('hide');
+
             // query the data response to get the artist id
             artistId = data.response.hits[0].result.primary_artist.id
             console.log(artistId)
@@ -41,6 +46,8 @@ function getMusicalArtistId(event) {
         .catch(function(err) {
             console.error(err)
         });
+
+
 }
 
 function getArtistSongs() {

@@ -11,6 +11,12 @@
 	box-sizing: border-box;
 }
 
+
+.hide {
+display: none;
+
+}
+
 body {
 	background-color: var(--primary);
 	margin: 0;
@@ -20,6 +26,7 @@ body {
 	line-height: 1.5;
 	font-size: 16px;
 }
+
 
 h1,
 h2,
