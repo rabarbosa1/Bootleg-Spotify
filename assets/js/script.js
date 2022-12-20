@@ -1,9 +1,12 @@
 var artist
 var artistSearchStr
 var artistId
+var artistPlaylistURI 
 var artistInputSubmit = $("#artist-input-btn")
+var artistPlaylistSubmit = $('#artist-playlist-input-btn')
 var artistInput = $("#artist-name")
-var songName = $("#songName")
+var artistSearchTerm = $('#artist-search-term')
+var playlistSubtitle = $('#playlist');
 
 // replace spaces in artist name with '%20'
 var artistForSearch = function () {
@@ -35,6 +38,12 @@ function getMusicalArtistId(event) {
         .then(function (data) {
             console.log(data)
 
+            //add artist name to search term
+            artistSearchTerm.text('Showing Song results for :   ' + data.response.hits[0].result.artist_names);
+            playlistSubtitle.text(data.response.hits[0].result.artist_names + "'s" + "  Playlist :" );
+            $('#song-info').removeClass('hide');
+            $('#spotify-player').removeClass('hide');
+
             // query the data response to get the artist id
             artistId = data.response.hits[0].result.primary_artist.id
             console.log(artistId)
@@ -44,6 +53,8 @@ function getMusicalArtistId(event) {
         .catch(function (err) {
             console.error(err)
         });
+
+
 }
 
 function getArtistSongs() {
@@ -72,7 +83,13 @@ function getArtistSongs() {
 }
 
 
-function getArtistForPlaylist() {
+function getArtistForPlaylist(event) {
+    event.preventDefault();
+    artist = artistInput.val()
+    // replace spaces in artist name with '%20'
+    console.log(artist.replace(/ /g, "%20"))
+    artistSearchStr = artist.replace(/ /g, "%20")
+    console.log(artistSearchStr);
     const options = {
         method: 'GET',
         headers: {
@@ -80,14 +97,16 @@ function getArtistForPlaylist() {
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
         }
     };
-
-    fetch('https://spotify23.p.rapidapi.com/search/?q=queen&type=artists&offset=0&limit=1&numberOfTopResults=5', options)
+    
+    fetch(`https://spotify23.p.rapidapi.com/search/?q=${artistSearchStr}&type=artists&offset=0&limit=1&numberOfTopResults=5`, options)
         .then(function (response) {
             console.log(response)
             return response.json()
         })
         .then(function (data) {
             console.log(data)
+            artistPlaylistURI = data.artists.items[0].data.uri
+            getArtistPlaylist();
         })
         .catch(function (err) {
             console.error(err)
@@ -95,7 +114,8 @@ function getArtistForPlaylist() {
 }
 
 function getArtistPlaylist() {
-    var apiURL = 'https://spotify23.p.rapidapi.com/seed_to_playlist/?uri=spotify%3Aartist%3A1dfeR4HaWDbWqFHLkxsg1d'
+    var artistPlaylistSearchURI = artistPlaylistURI.replace(/:/g, "%3A")
+    var apiURL = `https://spotify23.p.rapidapi.com/seed_to_playlist/?uri=${artistPlaylistSearchURI}`
     const options = {
         method: 'GET',
         headers: {
@@ -111,6 +131,7 @@ function getArtistPlaylist() {
         })
         .then(function (data) {
             console.log(data)
+        
         })
         .catch(function (err) {
             console.error(err)
@@ -121,7 +142,7 @@ function getArtistPlaylist() {
 
 artistInputSubmit.on("click", getMusicalArtistId)
 
-
+artistPlaylistSubmit.on("click", getArtistForPlaylist)
 
 // embed spotify player in app
 // get the iframe from the html
