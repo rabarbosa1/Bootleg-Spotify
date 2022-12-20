@@ -1,9 +1,9 @@
 :root {
-	--primary: #1DB954;
+	--sptfygrn: #1DB954;
 	--secondary: #afd4c9;
 	--tertiary: #737f7f;
 	--light-dark: black;
-	--dark: #000000;
+	--dark: blue;
 	--border-radius: 0.3rem;
 }
 
@@ -18,17 +18,27 @@ padding-bottom: 10px;
 
 }
 
+
+
+#artist-name{
+	background-color: var(--sptfygrn);
+	color: black;
+	font-weight: 700;
+	text-align: center;
+	font-size: 25px;
+}
+
 .hide {
 display: none;
 
 }
 
 body {
-	background-color: var(--primary);
+	background-color: black;
 	margin: 0;
 	padding: 0;
-	font-family: "IBM Plex Sans", sans-serif;
-	color: var(--dark);
+	font-family: 'Gotham Rounded', sans-serif;
+	color: var(--sptfygrn);
 	line-height: 1.5;
 	font-size: 16px;
 }
@@ -41,7 +51,7 @@ h5,
 h6 {
 	font-weight: 700;
 	margin: 0;
-	color: var(--dark);
+	color:var(--sptfygrn);
 	line-height: 1.25;
 }
 h3 {
@@ -72,19 +82,20 @@ p {
 	display: block;
 	margin: 15px 0;
 	border-radius: var(--border-radius);
-	color: var(--primary);
+	color:black;
 	border: none;
 	outline: none;
-	background-color: var(--light-dark);
-	box-shadow: 3px 3px var(--dark);
+	background-color:var(--sptfygrn);
+	box-shadow: 3px 3px var(--sptfygrn);
 	transform: translate(-1px, -1px);
 }
 
 .btn:hover {
-	color: var(--primary);
-	background-color: var(--tertiary);
+	color:var(--sptfygrn);
+	background-color: black;
 	transform: translate(0, 0);
-	box-shadow: 2px 2px var(--dark);
+	box-shadow: 2px;
+	cursor: pointer;
 }
 
 .btn-inline {
@@ -96,7 +107,7 @@ p {
 	color: var(--primary);
 	border: none;
 	outline: none;
-	background-color: var(--light-dark);
+	background-color:var(--sptfygrn);
 	box-shadow: 3px 3px var(--secondary);
 	transform: translate(-1px, -1px);
 	display: inline-block;
@@ -111,25 +122,30 @@ p {
 	color: var(--primary);
 	background-color: var(--tertiary);
 	transform: translate(0, 0);
-	box-shadow: 2px 2px var(--dark);
+	box-shadow: 2px 2px var(--sptfygrn);
 }
 
 .hero {
 	padding: 3% 4%;
-	background-color: var(--dark);
+	background-color:black;
 	color: var(--primary);
 	justify-content: center;
 	width: auto;
+	border-bottom: 5px solid var(--sptfygrn);
+	margin-bottom: 50px;
+	padding-bottom: -20px;
+
 }
 
 .hero p {
 	max-width: 75%;
+	color: var(--sptfygrn)
 }
 
 .app-title {
 	font-size: 3rem;
-	background-color: var(--primary);
-	color: var(--dark);
+	background-color: black;
+	color: var(--sptfygrn);
 	padding: 0 10px;
 	display: inline-block;
 	border-radius: var(--border-radius);
@@ -151,7 +167,7 @@ p {
 }
 
 .list-item:hover {
-	background-color: var(--dark);
+	background-color: var(--sptfygrn);
 }
 
 .status-icon {
@@ -161,27 +177,22 @@ p {
 	border-radius: var(--border-radius);
 }
 
-.icon-danger {
-	color: rgb(255, 70, 70);
-}
-
-.icon-success {
-	color: rgb(29, 153, 255);
-}
 
 /* CARDS */
-.card {
+.side-card {
 	margin: 0 0 20px 0;
-	border: 3px solid var(--dark);
+	border: 3px solid var(--sptfygrn);
 	border-radius: var(--border-radius);
 }
 
 .card-header {
-	color: var(--primary);
-	background-color: var(--dark);
+	color: black;
+	background-color: #1DB954;
 	padding: 2.5%;
 	border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-	color: #1DB954
+	border-bottom: 2px solid #1DB954;
+	text-align: center;
+	font-size: 32px;
 }
 
 .card-body {
@@ -195,9 +206,10 @@ p {
 	display: block;
 }
 
-.form-label {
-	font-size: 1.1rem;
+.form-label-artist {
+	font-size:20px;
 	margin: 0 0 0 5px;
+	text-align: center;
 }
 
 .form-input {
@@ -205,7 +217,7 @@ p {
 	padding: 3%;
 	margin: 5px 0;
 	font-size: 1.2rem;
-	border: 2px solid var(--light-dark);
+	border: 2px solid var(--sptfygrn);
 	border-radius: var(--border-radius);
 }
 
