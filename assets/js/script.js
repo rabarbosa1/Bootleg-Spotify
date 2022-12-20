@@ -2,6 +2,7 @@ var artist
 var artistSearchStr
 var artistId
 var artistPlaylistURI 
+var playlistIframe = $("#playlist-iframe")
 var artistInputSubmit = $("#artist-input-btn")
 var artistPlaylistSubmit = $('#artist-playlist-input-btn')
 var artistInput = $("#artist-name")
@@ -45,7 +46,6 @@ function getMusicalArtistId(event) {
             console.log(artistId)
             getArtistAlbums()
             getArtistForPlaylist(event)
-            getArtistPlaylist()
         })
         .catch(function (err) {
             console.error(err)
@@ -64,7 +64,6 @@ function getArtistAlbums() {
         }
     };
 
-    //fetch(`https://genius-song-lyrics1.p.rapidapi.com/artists/${artistId}/songs?sort=title&per_page=20&page=1`, options)
     fetch(`https://genius-song-lyrics1.p.rapidapi.com/artists/${artistId}/albums?per_page=20&page=1`, options)
         .then(function (response) {
             console.log(response)
