@@ -3,9 +3,10 @@ var artistSearchStr
 var artistId
 var artistInputSubmit = $("#artist-input-btn")
 var artistInput = $("#artist-name")
+var songName = $("#songName")
 
 // replace spaces in artist name with '%20'
-var artistForSearch = function() {  
+var artistForSearch = function () {
     artist.split(" ")
     console.log(artist)
 }
@@ -17,6 +18,35 @@ function getMusicalArtistId(event) {
     // replace spaces in artist name with '%20'
     console.log(artist.replace(/ /g, "%20"))
     artistSearchStr = artist.replace(/ /g, "%20")
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'bf414946damshfe6a477585380f8p1bd8e7jsnecd224242b38',
+            'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+        }
+    };
+
+    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=1&page=1`, options)
+        .then(function (response) {
+            console.log(response)
+            return response.json()
+        })
+        .then(function (data) {
+            console.log(data)
+
+            // query the data response to get the artist id
+            artistId = data.response.hits[0].result.primary_artist.id
+            console.log(artistId)
+            getArtistSongs()
+            
+        })
+        .catch(function (err) {
+            console.error(err)
+        });
+}
+
+function getArtistSongs() {
  
     const options = {
         method: 'GET',
@@ -25,26 +55,20 @@ function getMusicalArtistId(event) {
             'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
         }
     };
-    
-    fetch(`https://genius-song-lyrics1.p.rapidapi.com/search?q=${artistSearchStr}&per_page=1&page=1`, options)
+
+    //fetch(`https://genius-song-lyrics1.p.rapidapi.com/artists/${artistId}/songs?sort=title&per_page=20&page=1`, options)
+    fetch(`https://genius-song-lyrics1.p.rapidapi.com/artists/${artistId}/albums?per_page=20&page=1`, options)
         .then(function (response) {
             console.log(response)
             return response.json()
         })
-        .then(function(data) {
+        .then(function (data) {
             console.log(data)
-
-            // query the data response to get the artist id
-            artistId = data.response.hits[0].result.primary_artist.id
-            console.log(artistId)
+            
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.error(err)
         });
-}
-
-function getArtistSongs() {
-
 }
 
 
@@ -56,16 +80,16 @@ function getArtistForPlaylist() {
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
         }
     };
-    
+
     fetch('https://spotify23.p.rapidapi.com/search/?q=queen&type=artists&offset=0&limit=1&numberOfTopResults=5', options)
         .then(function (response) {
             console.log(response)
             return response.json()
         })
-        .then(function(data) {
+        .then(function (data) {
             console.log(data)
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.error(err)
         });
 }
@@ -79,16 +103,16 @@ function getArtistPlaylist() {
             'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
         }
     };
-    
+
     fetch(apiURL, options)
         .then(function (response) {
             console.log(response)
             return response.json()
         })
-        .then(function(data) {
+        .then(function (data) {
             console.log(data)
         })
-        .catch(function(err) {
+        .catch(function (err) {
             console.error(err)
         });
 
