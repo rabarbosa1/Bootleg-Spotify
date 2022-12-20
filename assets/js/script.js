@@ -10,12 +10,6 @@ var artistSearchTerm = $('#artist-search-term')
 var playlistSubtitle = $('#playlist');
 
 
-// replace spaces in artist name with '%20'
-var artistForSearch = function () {
-    artist.split(" ")
-    console.log(artist)
-}
-
 function getMusicalArtistId(event) {
     event.preventDefault()
     // get the value of the search input for artist
@@ -143,7 +137,7 @@ function getArtistPlaylist() {
         });
 
 }
-// getArtistPlaylist()
+
 
 
 artistInputSubmit.on("click", getMusicalArtistId)
