@@ -133,6 +133,7 @@ function getArtistPlaylist() {
         // split artistPlaylistSearchInput variable on :
         // store the playlist id in a new variable - var playlistId
         // update the src in the iFrame to https://open.spotify.com/embed/playlist/${playlistId}?utm_source=oembed
+        getPlaylistId()
         })
         .catch(function (err) {
             console.error(err)
@@ -140,7 +141,10 @@ function getArtistPlaylist() {
 
 }
 
-
+var getPlaylistId = function() {
+    var artistPlaylistURISplit = artistPlaylistURI.split(":")
+    console.log(artistPlaylistURISplit)
+}
 
 artistInputSubmit.on("click", getMusicalArtistId)
 
