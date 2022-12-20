@@ -38,7 +38,7 @@ function getMusicalArtistId(event) {
 
             //add artist name to search term
             artistSearchTerm.text('Showing Song results for :   ' + data.response.hits[0].result.artist_names);
-            playlistSubtitle.text(data.response.hits[0].result.artist_names + "'s" + "  Playlist :" );
+            playlistSubtitle.text(data.response.hits[0].result.artist_names + "'s" + "Playlist" );
             $('#song-info').removeClass('hide');
             $('#spotify-player').removeClass('hide');
 
