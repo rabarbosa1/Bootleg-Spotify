@@ -4,10 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<link
-			href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.cdnfonts.com/css/gotham-rounded" rel="stylesheet">
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
@@ -21,20 +18,22 @@
 
 	<body class="flex-column min-100-vh">
 		<header class="hero">
-			<h1 class="app-title"><i class="fa-brands fa-spotify"></i>Bootleg Spotify!</h1>
+			<h1 class="app-title"><i class="fa-brands fa-spotify"></i>     Bootleg Spotify  !</h1>
 			<p>
+
 				Search for a music artist and to see a list of
-				songs and learn the lyrics!
+				albums and listen to a playlist!
+
 			</p>
 		</header>
 
 		<main class="flex-row justify-space-between">
 			<div class="col-12 col-md-4">
-				<div class="card">
+				<div class="side-card">
 					<h3 class="card-header text-uppercase">Search By Artist</h3>
 					<form id="user-form" class="card-body">
 
-						<label class="form-label" for="artist-name">Artist Name</label>
+						<label class="form-label-artist" for="artist-name">Artist Name</label>
 						<input
 							name="artist-name"
 							id="artist-name"
@@ -42,39 +41,35 @@
 							autofocus="true"
 							class="form-input"
 						/>
-						<button id="artist-input-btn" type="submit" class="btn">Get Artist Songs</button>
-						<button id="artist-playlist-input-btn" type="submit" class="btn">Get Artist Playlist</button>
+						<button id="artist-input-btn" type="submit" class="btn">Get Artist Albums and Playlist</button>
+						<!-- <button id="artist-playlist-input-btn" type="submit" class="btn">Get Artist Playlist</button> -->
 
 					</form>
 				</div>
 
-				<div class="card">
+				<div class="side-card">
 
 					<h3 class="card-header text-uppercase">Search History</h3>
 					<div id="search-history" class="card-body">
-						<button data-language="button-1" class="btn">Taylor Swift</button>
-						<button data-language="button-2" class="btn">Queen</button>
-						<button data-language="button-3" class="btn">Melanie Martinez</button>
+						<button data-artist="button-1" class="btn">Taylor Swift</button>
+						<button data-artist="button-2" class="btn">Queen</button>
+						<button data-artist="button-3" class="btn">Melanie Martinez</button>
 
 					</div>
 				</div>
 			</div>
 
-			<div id="song-info" class="hide col-12 col-md-8">
+			<div id="album-info" class="hide col-12 col-md-8">
 				<h2 class="subtitle" id="artist-search-term">
 				</h2>
 
-				<div id="song-container" class="list-group">
-					<button id="songname"></button>
-                    <button data-language="javascript" class="btn">Dollhouse</button>
-						<button data-language="html" class="btn">Pity Party</button>
-						<button data-language="css" class="btn">Cake</button>
+				<div id="album-container" class="list-group">
                 </div>
 
 			</div>
 			<h1 id="playlist"></h1>
 			<div class="hide" id="spotify-player" style="left: 0; width: 100%; height: 380px; position: relative;">
-				<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1E4vJDb4S6o3EK?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
+				<iframe id="playlist-iframe" src="https://open.spotify.com/embed/playlist/37i9dQZF1E4vJDb4S6o3EK?utm_source=oembed" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
 			</div>
 		</main>
 
