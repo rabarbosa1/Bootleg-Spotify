@@ -1,3 +1,4 @@
+
 var artist;
 var artistSearchStr;
 var artistId;
@@ -11,6 +12,8 @@ var artistInput = $("#artist-name");
 var songName = $("#songName");
 var artistSearchTerm = $("#artist-search-term");
 var playlistSubtitle = $("#playlist");
+var songHistory = [];
+
 
 function getMusicalArtistId(event) {
   event.preventDefault();
@@ -58,13 +61,16 @@ function getMusicalArtistId(event) {
           artistId = artistResponseHits[i].result.primary_artist.id;
           console.log(artistId);
         }
+
       }
       getArtistAlbums();
       getArtistForPlaylist(event);
+      searchHistory()
     })
     .catch(function (err) {
       console.error(err);
     });
+
 }
 
 function getArtistAlbums() {
@@ -173,6 +179,14 @@ function getPlaylistId() {
   playlistId = artistPlaylistURISplit.pop();
   console.log(playlistId);
 }
+
+function searchHistory() {
+    var searchEl = $(`<button data-artist="button-1" class="btn">${artist}</button>`);
+    $("#search-history").append(searchEl);
+};
+
+// getArtistPlaylist()
+
 
 artistInputSubmit.on("click", getMusicalArtistId);
 
