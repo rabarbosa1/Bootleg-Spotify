@@ -1,10 +1,11 @@
-
 var artist;
 var artistSearchStr;
 var artistId;
 var artistURI;
 var artistPlaylistURI;
 var playlistId;
+var artistAlbumsAndPlaylist = [];
+var artistSearchHistoryBtn = $("#search-artist-history-btn");
 var playlistIframe = $("#playlist-iframe");
 var artistInputSubmit = $("#artist-input-btn");
 var artistPlaylistSubmit = $("#artist-playlist-input-btn");
@@ -13,7 +14,6 @@ var songName = $("#songName");
 var artistSearchTerm = $("#artist-search-term");
 var playlistSubtitle = $("#playlist");
 var songHistory = [];
-
 
 function getMusicalArtistId(event) {
   event.preventDefault();
@@ -64,16 +64,14 @@ function getMusicalArtistId(event) {
           artistId = artistResponseHits[i].result.primary_artist.id;
           console.log(artistId);
         }
-
       }
       getArtistAlbums();
       getArtistForPlaylist(event);
-      searchHistory()
+      searchHistory();
     })
     .catch(function (err) {
       console.error(err);
     });
-
 }
 
 function getArtistAlbums() {
@@ -97,11 +95,21 @@ function getArtistAlbums() {
       console.log(data);
       // for loop to iterate the albums array
       // print button to UI with album name
-      $("#album-container").empty()
-      var albumArray = data.response.albums
+      $("#album-container").empty();
+      artistAlbumsAndPlaylist = [];
+      var albumArray = data.response.albums;
       for (let i = 0; i < albumArray.length; i++) {
-        $("#album-container").append(`<button data-album=${albumArray[i].name} class="listed-album">${albumArray[i].name}</button>`)
-    }
+
+        $("#album-container").append(
+          `<button data-album=${albumArray[i].name} class="btn">${albumArray[i].name}</button>`
+        );
+
+        var artistAlbumsForStorage = {
+          album: albumArray[i].name,
+        };
+        artistAlbumsAndPlaylist.push(artistAlbumsForStorage);
+        console.log(artistAlbumsAndPlaylist);
+      }
 
     })
     .catch(function (err) {
@@ -181,19 +189,34 @@ function getPlaylistId() {
   console.log(artistPlaylistURISplit);
   playlistId = artistPlaylistURISplit.pop();
   console.log(playlistId);
+
+  // create an object to store playlist id
+  var artistPlaylistForStorage = {
+    playlist: playlistId,
+  };
+  // push playlist id object into artistAlbumsAndPlaylist array
+  artistAlbumsAndPlaylist.push(artistPlaylistForStorage);
+  console.log(artistAlbumsAndPlaylist);
+  // add album and playlist array to local storage
+  localStorage.setItem(artist, JSON.stringify(artistAlbumsAndPlaylist));
 }
 
 function searchHistory() {
-    var searchEl = $(`<button data-artist="button-1" class="btn">${artist}</button>`);
-    $("#search-history").append(searchEl);
-};
+  var searchEl = $(
+    `<button id="search-artist-history-btn" data-artist="button-1" class="btn">${artist}</button>`
+  );
+  $("#search-history").append(searchEl);
+}
 
-// getArtistPlaylist()
+function getArtistInfoFromStorage() {
+  console.log("testing get from storage");
+  var getDataFromStorage = JSON.parse(localStorage.getItem(artist));
+  console.log(getDataFromStorage);
+}
 
 
+$("#search-history").on("click", "#search-artist-history-btn", getArtistInfoFromStorage);
 artistInputSubmit.on("click", getMusicalArtistId);
-
-// artistPlaylistSubmit.on("click", getArtistForPlaylist)
 
 // embed spotify player in app
 // get the iframe from the html
