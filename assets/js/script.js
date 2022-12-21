@@ -88,6 +88,12 @@ function getArtistAlbums() {
       console.log(data);
       // for loop to iterate the albums array
       // print button to UI with album name
+
+      var albumArray = data.response.albums
+      for (let i = 0; i < albumArray.length; i++) {
+        $("#album-container").append(`<button data-album=${albumArray[i].name} class="btn">${albumArray[i].name}</button>`)
+    }
+
     })
     .catch(function (err) {
       console.error(err);
