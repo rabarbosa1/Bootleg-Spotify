@@ -74,6 +74,7 @@ function getMusicalArtistId(event) {
 }
 
 function getArtistAlbums() {
+  
   const options = {
     method: "GET",
     headers: {
