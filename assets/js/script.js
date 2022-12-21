@@ -8,6 +8,7 @@ var artistInput = $("#artist-name")
 var songName = $("#songName")
 var artistSearchTerm = $('#artist-search-term')
 var playlistSubtitle = $('#playlist');
+var songHistory = [];
 
 
 // replace spaces in artist name with '%20'
@@ -15,6 +16,7 @@ var artistForSearch = function () {
     artist.split(" ")
     console.log(artist)
 }
+
 
 function getMusicalArtistId(event) {
     event.preventDefault()
@@ -50,13 +52,12 @@ function getMusicalArtistId(event) {
             artistId = data.response.hits[0].result.primary_artist.id
             console.log(artistId)
             getArtistSongs()
-            
+            searchHistory();
         })
         .catch(function (err) {
             console.error(err)
         });
-
-
+        
 }
 
 function getArtistSongs() {
@@ -142,6 +143,11 @@ function getArtistPlaylist() {
         });
 
 }
+function searchHistory() {
+    var searchEl = $(`<button data-artist="button-1" class="btn">${artist}</button>`);
+    $("#search-history").append(searchEl);
+};
+
 // getArtistPlaylist()
 
 artistInputSubmit.on("click", getMusicalArtistId)
