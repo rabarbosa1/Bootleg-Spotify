@@ -54,8 +54,8 @@ function getMusicalArtistId(event) {
           playlistSubtitle.text(
             artistResponseHits[i].result.artist_names + "'s" + "  Playlist :"
           );
-          $('#album-info').removeClass('hide');
-          $('#spotify-player').removeClass('hide');
+          $("#album-info").removeClass("hide");
+          $("#spotify-player").removeClass("hide");
 
           // query the data response to get the artist id
           artistId = artistResponseHits[i].result.primary_artist.id;
@@ -74,7 +74,6 @@ function getMusicalArtistId(event) {
 }
 
 function getArtistAlbums() {
-  
   const options = {
     method: "GET",
     headers: {
@@ -95,7 +94,7 @@ function getArtistAlbums() {
       console.log(data);
       // for loop to iterate the albums array
       // print button to UI with album name
-
+      $("#album-container").empty()
       var albumArray = data.response.albums
       for (let i = 0; i < albumArray.length; i++) {
         $("#album-container").append(`<button data-album=${albumArray[i].name} class="btn">${albumArray[i].name}</button>`)
