@@ -19,6 +19,9 @@ function getMusicalArtistId(event) {
   event.preventDefault();
   // get the value of the search input for artist
   artist = artistInput.val();
+  
+
+  console.log(artist);
   // replace spaces in artist name with '%20'
   console.log(artist.replace(/ /g, "%20"));
   artistSearchStr = artist.replace(/ /g, "%20");
@@ -44,7 +47,7 @@ function getMusicalArtistId(event) {
       console.log(data.response.hits);
       var artistResponseHits = data.response.hits;
       for (var i = 0; i < artistResponseHits.length; i++) {
-        if (artist === artistResponseHits[i].result.artist_names) {
+        if (artist == artistResponseHits[i].result.artist_names) {
           console.log(artistResponseHits[i].result.artist_names);
           //add artist name to search term
           artistSearchTerm.text(

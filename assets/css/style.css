@@ -27,6 +27,9 @@ padding-bottom: 10px;
 	text-align: center;
 	font-size: 25px;
 }
+#artist-name::first-letter{
+	text-transform: capitalize;
+};
 
 .hide {
 display: none;
@@ -156,6 +159,7 @@ p {
 	max-width: 75%;
 	color: var(--sptfygrn)
 }
+
 
 .app-title {
 	font-size: 3rem;
