@@ -51,8 +51,8 @@ function getMusicalArtistId(event) {
           playlistSubtitle.text(
             artistResponseHits[i].result.artist_names + "'s" + "  Playlist :"
           );
-          $("#album-info").removeClass("hide");
-          $("#spotify-player").removeClass("hide");
+          $('#album-info').removeClass('hide');
+          $('#spotify-player').removeClass('hide');
 
           // query the data response to get the artist id
           artistId = artistResponseHits[i].result.primary_artist.id;
