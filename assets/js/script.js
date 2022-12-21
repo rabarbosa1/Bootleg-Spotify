@@ -97,7 +97,7 @@ function getArtistAlbums() {
       $("#album-container").empty()
       var albumArray = data.response.albums
       for (let i = 0; i < albumArray.length; i++) {
-        $("#album-container").append(`<button data-album=${albumArray[i].name} class="btn">${albumArray[i].name}</button>`)
+        $("#album-container").append(`<button data-album=${albumArray[i].name} class="listed-album">${albumArray[i].name}</button>`)
     }
 
     })
