@@ -96,6 +96,7 @@ function getArtistAlbums() {
       artistAlbumsAndPlaylist = [];
       var albumArray = data.response.albums;
       for (let i = 0; i < albumArray.length; i++) {
+
         $("#album-container").append(
           `<button data-album=${albumArray[i].name} class="btn">${albumArray[i].name}</button>`
         );
@@ -106,6 +107,7 @@ function getArtistAlbums() {
         artistAlbumsAndPlaylist.push(artistAlbumsForStorage);
         console.log(artistAlbumsAndPlaylist);
       }
+
     })
     .catch(function (err) {
       console.error(err);
