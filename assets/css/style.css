@@ -79,7 +79,7 @@ p {
 	font-size: 25px;
 	font-weight: 800;
 	text-decoration: none;
-	padding: 6px 5px;
+	padding: 12px 5px;
 	width: 100%;
 	display: block;
 	margin: 15px 0;
@@ -88,7 +88,6 @@ p {
 	border: none;
 	outline: none;
 	background-color:var(--sptfygrn);
-	box-shadow: 3px 3px var(--sptfygrn);
 	transform: translate(-1px, -1px);
 }
 .btn {
