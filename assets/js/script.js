@@ -193,7 +193,7 @@ function getPlaylistId() {
 
   // create an object to store playlist id
   var artistPlaylistForStorage = {
-    playlist: playlistId,
+    playlist: playlistId
   };
   // push playlist id object into artistAlbumsAndPlaylist array
   artistAlbumsAndPlaylist.push(artistPlaylistForStorage);
@@ -209,11 +209,41 @@ function searchHistory() {
   $("#search-history").append(searchEl);
 }
 
-function getArtistInfoFromStorage() {
-  console.log("testing get from storage");
-  var getDataFromStorage = JSON.parse(localStorage.getItem(artist));
+function getArtistInfoFromStorage(event) {
+  $("#album-container").empty()
+  console.log(event.currentTarget.innerHTML, "testing get from storage");
+  var getDataFromStorage = JSON.parse(localStorage.getItem(event.currentTarget.innerHTML));
   console.log(getDataFromStorage);
+
+  var playlistIdFromStorage = getDataFromStorage.pop()
+  console.log(playlistIdFromStorage.playlist)
+
+  
+  for(var i = 0; i < getDataFromStorage.length; i++) {
+    $("#album-container").append(`<button data-album=${getDataFromStorage[i].album} class="btn">${getDataFromStorage[i].album}</button>`)
+  }
+    playlistIframe.attr(
+      "src",
+      `https://open.spotify.com/embed/playlist/${playlistIdFromStorage.playlist}?utm_source=oembed`
+    );
+    
+    artistSearchTerm.text(
+      "Showing Album Results For: " +
+      event.currentTarget.innerHTML
+    );
+    playlistSubtitle.text(
+      event.currentTarget.innerHTML + "'s" + "  Playlist :"
+    );
 }
+
+function initializeSavedArtists() {
+  var getArtists = JSON.parse(localStorage.getItem(artist))
+  for(var i = 0; i < localStorage.length; i++) {
+    $("#search-history").append( `<button id="search-artist-history-btn" data-artist="button-1" class="btn">${localStorage.key(i)}</button>`)
+  }
+}
+
+initializeSavedArtists()
 
 
 $("#search-history").on("click", "#search-artist-history-btn", getArtistInfoFromStorage);
