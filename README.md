@@ -1,65 +1,42 @@
 # Bootleg-Spotify
 
-## Description
-
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
-## Table of Contents (Optional)
+## Table of Contents
 
 If your README is long, add a table of contents to make it easy for users to find what they need.
 
+- [Description](#Description)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
-- [License](#license)
+
+## Description
+
+Our motivation for this project was to create an website that pulls from 2 API's to use user data. We wanted the website to mimic something to Spotify. Hence the name Bootleg Spotify. This solves two criteria that we wanted to meet. The first is to be able to reference albums from genius based off the user's artist. The second was to provide a spotify playlist from Spotify based off the user's artist. This can help the user to find additional songs based off the playlist provided will have songs related to the artists genre. Also find all the albums if they wish to explore the artist furtther. In the end we learned to code toghether as a group. Flow through our ideas toghether to create functions to pull the API's. In the end we divided all the html, css and javascript evenly.
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+RapidAPI Genius - https://rapidapi.com/Glavier/api/genius-song-lyrics1/
+
+RapidAPI Spotify - https://rapidapi.com/Glavier/api/spotify23/
+
+Jazz - locally pulled
+
+Spotify Framework - https://open.spotify.com/embed/playlist/37i9dQZF1E4vJDb4S6o3EK?utm_source=oembed
+
+jQuery - https://code.jquery.com/jquery-3.5.1.min.js
+
+fontawesome - https://kit.fontawesome.com/8f82156273.js
+
+
 
 ## Usage
+[comment]: <> (Photos below may change.)
 
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
-
-![alt text](assets/images/screenshot.png)
+![Main Page](/assets/Images/main-page.png)
+![Search Artist](/assets/Images/search.png)
+![Playlist at Bottom of Page](/assets/Images/playlist.png)
+![New Artist](/assets/Images/newartist.png)
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
-
-## License
-
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
-
----
-
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
-
-Badges aren't necessary, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute to it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
+Garrett Anderson, Alyssa Red, Ricardo Barbosa, Gerardo Ormeno-Vela, Kevin Hernandez, Gregory Strachan
