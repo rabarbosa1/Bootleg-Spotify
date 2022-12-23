@@ -3,7 +3,6 @@
 	--secondary: #afd4c9;
 	--tertiary: #737f7f;
 	--light-dark: black;
-	--dark: blue;
 	--border-radius: 0.3rem;
 }
 
@@ -29,7 +28,7 @@ padding-bottom: 10px;
 }
 #artist-name::first-letter{
 	text-transform: capitalize;
-};
+}
 
 .hide {
 display: none;
@@ -45,8 +44,6 @@ body {
 	line-height: 1.5;
 	font-size: 16px;
 }
-
-
 h1,
 h2,
 h4,
@@ -103,7 +100,7 @@ p {
 	border: none;
 	outline: none;
 	background-color:var(--sptfygrn);
-	box-shadow: 3px 3px var(--sptfygrn);
+
 	transform: translate(-1px, -1px);
 }
 
@@ -117,29 +114,6 @@ p {
 
 .btn-inline {
 	display: inline;
-}
-
-.btn-back {
-	border-radius: var(--border-radius);
-	color: var(--primary);
-	border: none;
-	outline: none;
-	background-color:var(--sptfygrn);
-	box-shadow: 3px 3px var(--secondary);
-	transform: translate(-1px, -1px);
-	display: inline-block;
-	width: auto;
-	margin-top: 20px;
-	padding: 15px;
-	text-decoration: none;
-	font-size: 1.2rem;
-}
-
-.btn-back:hover {
-	color: var(--primary);
-	background-color: var(--tertiary);
-	transform: translate(0, 0);
-	box-shadow: 2px 2px var(--sptfygrn);
 }
 
 .hero {
@@ -187,14 +161,6 @@ p {
 .list-item:hover {
 	background-color: var(--sptfygrn);
 }
-
-.status-icon {
-	padding: 2px 5px;
-	margin: 0 5px;
-	background-color: rgba(255, 255, 255, 1);
-	border-radius: var(--border-radius);
-}
-
 
 /* CARDS */
 .side-card {
