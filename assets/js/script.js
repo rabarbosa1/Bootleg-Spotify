@@ -20,10 +20,8 @@ function getMusicalArtistId(event) {
   // get the value of the search input for artist
   artist = artistInput.val();
   
-
-  console.log(artist);
+  
   // replace spaces in artist name with '%20'
-  console.log(artist.replace(/ /g, "%20"));
   artistSearchStr = artist.replace(/ /g, "%20");
 
   const options = {
@@ -39,16 +37,12 @@ function getMusicalArtistId(event) {
     options
   )
     .then(function (response) {
-      console.log(response);
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      console.log(data.response.hits);
       var artistResponseHits = data.response.hits;
       for (var i = 0; i < artistResponseHits.length; i++) {
         if (artist == artistResponseHits[i].result.artist_names) {
-          console.log(artistResponseHits[i].result.artist_names);
           //add artist name to search term
           artistSearchTerm.text(
             "Showing Album Results For: " +
@@ -62,7 +56,6 @@ function getMusicalArtistId(event) {
 
           // query the data response to get the artist id
           artistId = artistResponseHits[i].result.primary_artist.id;
-          console.log(artistId);
         }
       }
       getArtistAlbums();
@@ -70,7 +63,6 @@ function getMusicalArtistId(event) {
       searchHistory();
     })
     .catch(function (err) {
-      console.error(err);
     });
 }
 
@@ -88,11 +80,9 @@ function getArtistAlbums() {
     options
   )
     .then(function (response) {
-      console.log(response);
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       // for loop to iterate the albums array
       // print button to UI with album name
       $("#album-container").empty();
@@ -108,7 +98,6 @@ function getArtistAlbums() {
           album: albumArray[i].name,
         };
         artistAlbumsAndPlaylist.push(artistAlbumsForStorage);
-        console.log(artistAlbumsAndPlaylist);
       }
 
     })
@@ -121,9 +110,7 @@ function getArtistForPlaylist(event) {
   event.preventDefault();
   artist = artistInput.val();
   // replace spaces in artist name with '%20'
-  console.log(artist.replace(/ /g, "%20"));
   artistSearchStr = artist.replace(/ /g, "%20");
-  console.log(artistSearchStr);
   const options = {
     method: "GET",
     headers: {
@@ -137,11 +124,9 @@ function getArtistForPlaylist(event) {
     options
   )
     .then(function (response) {
-      console.log(response);
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       artistURI = data.artists.items[0].data.uri;
       getArtistPlaylist();
     })
@@ -163,12 +148,9 @@ function getArtistPlaylist() {
 
   fetch(apiURL, options)
     .then(function (response) {
-      console.log(response);
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      console.log(data.mediaItems[0].uri);
       artistPlaylistURI = data.mediaItems[0].uri;
       // split artistPlaylistSearchInput variable on :
       // store the playlist id in a new variable - var playlistId
@@ -186,9 +168,7 @@ function getArtistPlaylist() {
 
 function getPlaylistId() {
   var artistPlaylistURISplit = artistPlaylistURI.split(":");
-  console.log(artistPlaylistURISplit);
   playlistId = artistPlaylistURISplit.pop();
-  console.log(playlistId);
 
   // create an object to store playlist id
   var artistPlaylistForStorage = {
@@ -196,7 +176,6 @@ function getPlaylistId() {
   };
   // push playlist id object into artistAlbumsAndPlaylist array
   artistAlbumsAndPlaylist.push(artistPlaylistForStorage);
-  console.log(artistAlbumsAndPlaylist);
   // add album and playlist array to local storage
   localStorage.setItem(artist, JSON.stringify(artistAlbumsAndPlaylist));
 }
@@ -210,16 +189,13 @@ function searchHistory() {
 
 function getArtistInfoFromStorage(event) {
   $("#album-container").empty()
-  console.log(event.currentTarget.innerHTML, "testing get from storage");
   var getDataFromStorage = JSON.parse(localStorage.getItem(event.currentTarget.innerHTML));
-  console.log(getDataFromStorage);
 
   var playlistIdFromStorage = getDataFromStorage.pop()
-  console.log(playlistIdFromStorage.playlist)
 
   
   for(var i = 0; i < getDataFromStorage.length; i++) {
-    $("#album-container").append(`<button data-album=${getDataFromStorage[i].album} class="btn">${getDataFromStorage[i].album}</button>`)
+    $("#album-container").append(`<button data-album=${getDataFromStorage[i].album} class="listed-album">${getDataFromStorage[i].album}</button>`)
   }
     playlistIframe.attr(
       "src",
