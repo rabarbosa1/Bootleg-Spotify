@@ -213,14 +213,23 @@ function getArtistInfoFromStorage(event) {
 
   var playlistIdFromStorage = getDataFromStorage.pop()
   console.log(playlistIdFromStorage.playlist)
+
+  
   for(var i = 0; i < getDataFromStorage.length; i++) {
     $("#album-container").append(`<button data-album=${getDataFromStorage[i].album} class="btn">${getDataFromStorage[i].album}</button>`)
   }
-
-  playlistIframe.attr(
-    "src",
-    `https://open.spotify.com/embed/playlist/${playlistIdFromStorage.playlist}?utm_source=oembed`
-  );
+    playlistIframe.attr(
+      "src",
+      `https://open.spotify.com/embed/playlist/${playlistIdFromStorage.playlist}?utm_source=oembed`
+    );
+    
+    artistSearchTerm.text(
+      "Showing Album Results For: " +
+      event.currentTarget.innerHTML
+    );
+    playlistSubtitle.text(
+      event.currentTarget.innerHTML + "'s" + "  Playlist :"
+    );
 }
 
 function initializeSavedArtists() {
