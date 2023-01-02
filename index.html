@@ -1,83 +1,96 @@
-<!DOCTYPE html>
++<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<link href="https://fonts.cdnfonts.com/css/gotham-rounded" rel="stylesheet">
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-		/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.cdnfonts.com/css/gotham-rounded"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
 
-		<link rel="stylesheet" href="./assets/css/jass.css" />
-        <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/jass.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
-		<title>Bootleg Spotify</title>
-	</head>
+    <title>Bootleg Spotify</title>
+  </head>
 
-	<body class="flex-column min-100-vh">
-		<header class="hero">
-			<h1 class="app-title"><i class="fa-brands fa-spotify"></i>     Bootleg Spotify  !</h1>
-			<p>
+  <body class="flex-column min-100-vh">
+    <header class="hero">
+      <h1 class="app-title">
+        <i class="fa-brands fa-spotify"></i> Bootleg Spotify !
+      </h1>
+      <p>
+        Search for a music artist and to see a list of albums and listen to a
+        playlist!
+      </p>
+    </header>
 
-				Search for a music artist and to see a list of
-				albums and listen to a playlist!
+    <main class="flex-row justify-space-between">
+      <div class="col-12 col-md-4">
+        <div class="side-card">
+          <h3 class="card-header text-uppercase">Search By Artist</h3>
+          <form id="user-form" class="card-body">
+            <label class="form-label-artist" for="artist-name"
+              >Artist Name</label
+            >
+            <input
+			plac
+              name="artist-name"
+              id="artist-name"
+              type="text"
+              autofocus="true"
+              class="form-input"
+            />
+            <button id="artist-input-btn" type="submit" class="btn">
+              Get Artist Albums and Playlist
+            </button>
+            <!-- <button id="artist-playlist-input-btn" type="submit" class="btn">Get Artist Playlist</button> -->
+          </form>
+        </div>
 
-			</p>
-		</header>
+        <div class="hide history-card">
+          <h3 class="card-header text-uppercase">Search History</h3>
+          <div id="search-history" class="card-body"></div>
+        </div>
+      </div>
 
-		<main class="flex-row justify-space-between">
-			<div class="col-12 col-md-4">
-				<div class="side-card">
-					<h3 class="card-header text-uppercase">Search By Artist</h3>
-					<form id="user-form" class="card-body">
+      <div id="album-info" class="hide col-12 col-md-8">
+        <h2 class="subtitle" id="artist-search-term"></h2>
+        <div id="album-container" class="list-group"></div>
+      </div>
+      <h1 id="playlist"></h1>
+      <div
+        class="hide"
+        id="spotify-player"
+        style="left: 0; width: 100%; height: 380px; position: relative"
+      >
+        <iframe
+          id="playlist-iframe"
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1E4vJDb4S6o3EK?utm_source=oembed"
+          style="
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border: 0;
+          "
+          allowfullscreen
+          allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"
+        ></iframe>
+      </div>
+    </main>
 
-						<label class="form-label-artist" for="artist-name">Artist Name</label>
-						<input
-							name="artist-name"
-							id="artist-name"
-							type="text"
-							autofocus="true"
-							class="form-input"
-						/>
-						<button id="artist-input-btn" type="submit" class="btn">Get Artist Albums and Playlist</button>
-						<!-- <button id="artist-playlist-input-btn" type="submit" class="btn">Get Artist Playlist</button> -->
-
-					</form>
-				</div>
-
-				<div class="side-card">
-
-					<h3 class="hide card-header text-uppercase">Search History</h3>
-					<div id="search-history" class="card-body">
-
-						
-						
-
-
-					</div>
-				</div>
-			</div>
-
-			<div id="album-info" class="hide col-12 col-md-8">
-				<h2 class="subtitle" id="artist-search-term">
-				</h2>
-
-				<div id="album-container" class="list-group">
-
-                </div>
-
-			</div>
-			<h1 id="playlist"></h1>
-			<div class="hide" id="spotify-player" style="left: 0; width: 100%; height: 380px; position: relative;">
-				<iframe id="playlist-iframe" src="" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture;"></iframe>
-			</div>
-		</main>
-
-		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<script src="./assets/js/script.js"></script>
-        <script src="https://kit.fontawesome.com/8f82156273.js" crossorigin="anonymous"></script>
-
-	</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/8f82156273.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

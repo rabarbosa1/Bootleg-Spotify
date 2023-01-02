@@ -3,6 +3,7 @@
 	--secondary: #afd4c9;
 	--tertiary: #737f7f;
 	--light-dark: black;
+	--dark: blue;
 	--border-radius: 0.3rem;
 }
 
@@ -16,11 +17,18 @@ font-size: 50px;
 padding-bottom: 10px;
 
 }
+.player{
+	margin-left: 50px; 
+	width: 90%; 
+	height: 340px; 
+	position: relative;
+	margin-bottom: 0px;
+}
 
 
 
 #artist-name{
-	background-color: var(--sptfygrn);
+	background-color:#1a7e08;
 	color: black;
 	font-weight: 700;
 	text-align: center;
@@ -28,13 +36,15 @@ padding-bottom: 10px;
 }
 #artist-name::first-letter{
 	text-transform: capitalize;
-}
+};
 
 .hide {
 display: none;
 
 }
-
+#hide{
+	display: none;
+}
 body {
 	background-color: black;
 	margin: 0;
@@ -44,6 +54,8 @@ body {
 	line-height: 1.5;
 	font-size: 16px;
 }
+
+
 h1,
 h2,
 h4,
@@ -84,8 +96,31 @@ p {
 	color:black;
 	border: none;
 	outline: none;
-	background-color:var(--sptfygrn);
+	background-color:#28c20e;
 	transform: translate(-1px, -1px);
+}
+.history-btn {
+	font-size: 25px;
+	font-weight: 800;
+	text-decoration: none;
+	padding: 6px 5px;
+	width: 100%;
+	display: block;
+	margin: 15px 0;
+	border-radius: var(--border-radius);
+	color:black;
+	border: none;
+	outline: none;
+	background-color:#28c20e;
+	box-shadow: 3px 3px #0C8900;
+	transform: translate(-1px, -1px);
+}
+.history-btn:hover{
+	color:#0C8900;
+	background-color: black;
+	transform: translate(0, 0);
+	box-shadow: 2px;
+	cursor: pointer;
 }
 .btn {
 	font-size: 25px;
@@ -100,12 +135,12 @@ p {
 	border: none;
 	outline: none;
 	background-color:var(--sptfygrn);
-
+	box-shadow: 3px 3px var(--sptfygrn);
 	transform: translate(-1px, -1px);
 }
 
 .btn:hover {
-	color:var(--sptfygrn);
+	color:#0C8900;
 	background-color: black;
 	transform: translate(0, 0);
 	box-shadow: 2px;
@@ -114,6 +149,29 @@ p {
 
 .btn-inline {
 	display: inline;
+}
+
+.btn-back {
+	border-radius: var(--border-radius);
+	color: var(--primary);
+	border: none;
+	outline: none;
+	background-color:var(--sptfygrn);
+	box-shadow: 3px 3px var(--secondary);
+	transform: translate(-1px, -1px);
+	display: inline-block;
+	width: auto;
+	margin-top: 20px;
+	padding: 15px;
+	text-decoration: none;
+	font-size: 1.2rem;
+}
+
+.btn-back:hover {
+	color: var(--primary);
+	background-color: var(--tertiary);
+	transform: translate(0, 0);
+	box-shadow: 2px 2px var(--sptfygrn);
 }
 
 .hero {
@@ -162,11 +220,21 @@ p {
 	background-color: var(--sptfygrn);
 }
 
+
+
+
 /* CARDS */
 .side-card {
 	margin: 0 0 20px 0;
 	border: 3px solid var(--sptfygrn);
 	border-radius: var(--border-radius);
+}
+.history-card{
+	margin: 0 0 20px 0;
+	border: 3px solid var(--sptfygrn);
+	border-radius: var(--border-radius);
+
+
 }
 
 .card-header {
